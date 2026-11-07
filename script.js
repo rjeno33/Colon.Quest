@@ -339,7 +339,7 @@ medications: {
 
         loperamide: {
         enabled: true,
-        stopDaysBefore: 2,
+        stopDaysBefore: 3,
         instruction: "Stop taking loperamide."
     }
 
