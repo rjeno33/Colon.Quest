@@ -335,6 +335,12 @@ medications: {
         enabled: true,
         stopDaysBefore: 7,
         instruction: "Stop taking Mounjaro."
+    },
+
+        loperamide: {
+        enabled: true,
+        stopDaysBefore: 2,
+        instruction: "Stop taking loperamide."
     }
 
 },
