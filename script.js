@@ -888,6 +888,372 @@ const plan =
 const ironSelect =
     document.getElementById("ironSelect");
 
+const anticoagulationSelect =
+    document.getElementById("anticoagulationSelect");
+
+const medicationPathway =
+    document.getElementById("medicationPathway");
+
+//=============================
+// Anticoagulation Protocols
+//=============================
+
+const anticoagulationNames = {
+
+    apixaban: "Apixaban",
+    edoxaban: "Edoxaban",
+    rivaroxaban: "Rivaroxaban"
+
+};
+
+const anticoagulationProtocols = {
+
+    doac: {
+
+        name: "Apixaban / Edoxaban / Rivaroxaban",
+
+        pathways: {
+
+            dayOfTest: {
+                name: "Do not take on day of test",
+                instructions: [
+                    {
+                        day: 0,
+                        text: "Do not take your DOAC."
+                    }
+                ]
+            },
+
+            lastDoseDay3: {
+                name: "Last dose 3 days before endoscopy",
+                instructions: [
+                    {
+                        day: -3,
+                        text: "Take your usual DOAC. This is your last dose."
+                    },
+                    {
+                        day: -2,
+                        text: "Do not take your DOAC."
+                    },
+                    {
+                        day: -1,
+                        text: "Do not take your DOAC."
+                    },
+                    {
+                        day: 0,
+                        text: "Do not take your DOAC."
+                    }
+                ]
+            },
+
+            aspirin: {
+                name: "Aspirin substitution pathway",
+                instructions: [
+                    {
+                        day: -3,
+                        text: "Take Aspirin 300mg and your usual DOAC. This is your last dose of DOAC."
+                    },
+                    {
+                        day: -2,
+                        text: "Take Aspirin 75mg. Do not take your DOAC."
+                    },
+                    {
+                        day: -1,
+                        text: "Take Aspirin 75mg. Do not take your DOAC."
+                    },
+                    {
+                        day: 0,
+                        text: "Take Aspirin 75mg. Do not take your DOAC."
+                    }
+                ]
+            }
+
+        }
+
+    },
+
+    dabigatran: {
+
+        name: "Dabigatran",
+
+        pathways: {
+
+            dayOfTest: {
+                name: "Do not take on day of test",
+                instructions: [
+                    {
+                        day: 0,
+                        text: "Do not take Dabigatran."
+                    }
+                ]
+            },
+
+            lastDoseDay3: {
+                name: "Last dose 3 days before endoscopy",
+                instructions: [
+                    {
+                        day: -3,
+                        text: "Take your usual Dabigatran. This is your last dose."
+                    },
+                    {
+                        day: -2,
+                        text: "Do not take Dabigatran."
+                    },
+                    {
+                        day: -1,
+                        text: "Do not take Dabigatran."
+                    },
+                    {
+                        day: 0,
+                        text: "Do not take Dabigatran."
+                    }
+                ]
+            },
+
+            lastDoseDay5: {
+                name: "Last dose 5 days before endoscopy",
+                instructions: [
+                    {
+                        day: -5,
+                        text: "Take your usual Dabigatran. This is your last dose."
+                    },
+                    {
+                        day: -4,
+                        text: "Do not take Dabigatran."
+                    },
+                    {
+                        day: -3,
+                        text: "Do not take Dabigatran."
+                    },
+                    {
+                        day: -2,
+                        text: "Do not take Dabigatran."
+                    },
+                    {
+                        day: -1,
+                        text: "Do not take Dabigatran."
+                    },
+                    {
+                        day: 0,
+                        text: "Do not take Dabigatran."
+                    }
+                ]
+            }
+
+        }
+
+    },
+
+    clopidogrel: {
+
+        name: "Clopidogrel",
+
+        pathways: {
+
+            continue: {
+                name: "Continue as usual",
+                instructions: [
+                    {
+                        day: 0,
+                        text: "You do not need to stop taking your clopidogrel for this procedure. Continue to take it as usual."
+                    }
+                ]
+            },
+
+            stopDay7: {
+                name: "Stop 7 days before endoscopy",
+                instructions: [
+                    {
+                        day: -7,
+                        text: "Stop taking Clopidogrel."
+                    }
+                ]
+            }
+
+        }
+
+    },
+
+    warfarin: {
+
+        name: "Warfarin",
+
+        pathways: {
+
+            continue: {
+                name: "Continue — INR checked on day of test",
+                instructions: [
+                    {
+                        day: 0,
+                        text: "Continue your usual Warfarin. Your INR will be checked on the day of your test."
+                    }
+                ]
+            },
+
+            interrupt: {
+                name: "Requires interruption",
+                suitableForColonQuest: false
+            }
+
+        }
+
+    }
+
+};
+
+// =========================
+// Anticoagulation pathway
+// =========================
+
+anticoagulationSelect.addEventListener("change", function () {
+
+    showAnticoagulationPathways();
+
+});
+
+
+function showAnticoagulationPathways() {
+
+    const medication =
+        anticoagulationSelect.value;
+
+    medicationPathway.innerHTML = "";
+
+    if (medication === "" || medication === "none") {
+        return;
+    }
+
+    let protocolKey = medication;
+
+    if (
+        medication === "apixaban" ||
+        medication === "edoxaban" ||
+        medication === "rivaroxaban"
+    ) {
+        protocolKey = "doac";
+    }
+
+    const protocol =
+        anticoagulationProtocols[protocolKey];
+
+    if (!protocol) {
+        return;
+    }
+
+    const pathwayKeys =
+        Object.keys(protocol.pathways);
+
+    if (pathwayKeys.length === 0) {
+        return;
+    }
+
+    let options = `
+        <option value="">
+            -- Select Medication Protocol --
+        </option>
+    `;
+
+    pathwayKeys.forEach(function (pathwayKey) {
+
+        const pathway =
+            protocol.pathways[pathwayKey];
+
+        options += `
+            <option value="${pathwayKey}">
+                ${pathway.name}
+            </option>
+        `;
+
+    });
+
+    medicationPathway.innerHTML = `
+        <label for="pathwaySelect">
+            Select the medication pathway
+        </label>
+
+        <select id="pathwaySelect">
+            ${options}
+        </select>
+    `;
+
+}
+
+//==========================
+// Get Anticoagulation Tasks
+//==========================
+
+function getAnticoagulationTasks(day) {
+
+    const medication =
+        anticoagulationSelect.value;
+
+    if (medication === "" || medication === "none") {
+        return [];
+    }
+
+    const pathwaySelect =
+        document.getElementById("pathwaySelect");
+
+    if (!pathwaySelect) {
+        return [];
+    }
+
+    const pathwayKey =
+        pathwaySelect.value;
+
+    let protocolKey = medication;
+
+    if (
+        medication === "apixaban" ||
+        medication === "edoxaban" ||
+        medication === "rivaroxaban"
+    ) {
+        protocolKey = "doac";
+    }
+
+    const protocol =
+        anticoagulationProtocols[protocolKey];
+
+    if (!protocol) {
+        return [];
+    }
+
+    const pathway =
+        protocol.pathways[pathwayKey];
+
+    if (!pathway || !pathway.instructions) {
+        return [];
+    }
+
+    const instructions =
+        pathway.instructions.filter(function (instruction) {
+
+            return instruction.day === day;
+
+        });
+
+    return instructions.map(function (instruction) {
+
+        let text = instruction.text;
+
+        if (anticoagulationNames[medication]) {
+
+            text = text.replaceAll(
+                "DOAC",
+                anticoagulationNames[medication]
+            );
+
+        }
+
+        return {
+            type: "medication",
+            text: text
+        };
+
+    });
+
+}
+
 
 
 
@@ -1488,6 +1854,11 @@ function addStandardDay(date, day) {
 
 tasks.push(...medicationTasks);
 
+    const anticoagulationTasks =
+    getAnticoagulationTasks(-day);
+
+tasks.push(...anticoagulationTasks);
+
 
 
     // =========================
@@ -1661,6 +2032,11 @@ const medicationTasks =
     getMedicationTasks(-1);
 
 tasks.push(...medicationTasks);
+
+    const anticoagulationTasks =
+    getAnticoagulationTasks(-1);
+
+tasks.push(...anticoagulationTasks);
 
 
     // =========================
@@ -1920,7 +2296,9 @@ tasks.push(
     ...getMedicationTasks(0)
 );
 
-
+tasks.push(
+    ...getAnticoagulationTasks(0)
+);
 
 tasks.push({
 
@@ -2111,6 +2489,70 @@ if (
 
     return;
 }
+
+        // =========================
+    // Anticoagulation validation
+    // =========================
+
+    if (anticoagulationSelect.value === "") {
+
+        alert(
+            "Please confirm whether the patient takes an anticoagulant or antiplatelet medication."
+        );
+
+        return;
+
+    }
+
+
+    if (
+        anticoagulationSelect.value !== "none"
+    ) {
+
+        const pathwaySelect =
+            document.getElementById("pathwaySelect");
+
+        if (
+            !pathwaySelect ||
+            pathwaySelect.value === ""
+        ) {
+
+            alert(
+                "Please select the anticoagulation medication pathway."
+            );
+
+            return;
+
+        }
+
+    }
+
+
+    // =========================
+    // Warfarin safety check
+    // =========================
+
+    if (
+        anticoagulationSelect.value === "warfarin"
+    ) {
+
+        const pathwaySelect =
+            document.getElementById("pathwaySelect");
+
+        if (
+            pathwaySelect &&
+            pathwaySelect.value === "interrupt"
+        ) {
+
+            alert(
+                "Warfarin interruption is not supported by Colon Quest. Please discuss the patient's individual anticoagulation management with the referring clinician or appropriate anticoagulation service, including whether bridging is required."
+            );
+
+            return;
+
+        }
+
+    }
 
 
 
