@@ -1482,14 +1482,6 @@ function addStandardDay(date, day) {
 
     let tasks = [];
 
-//==========================
-// Iron Tasks
-//==========================
-
-    const ironTasks =
-    getIronTasks(-day);
-
-tasks.push(...ironTasks);
 
     ///=====================
     /// Medication tasks ///
