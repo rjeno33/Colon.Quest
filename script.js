@@ -2638,6 +2638,25 @@ if (
 
     }
 
+    // =========================
+// Steroid validation
+// =========================
+
+if (
+    steroidSelect.checked &&
+    steroidDose.value.trim() === ""
+) {
+
+    alert(
+        "Please enter the additional steroid dose prescribed by the clinician."
+    );
+
+    steroidDose.focus();
+
+    return;
+
+}
+
 
 
 
