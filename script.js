@@ -323,9 +323,21 @@ const sheffieldProfile = {
     minAppointmentTime: "08:00",
 maxAppointmentTime: "21:00",
 
-        iron: {
-        stopDaysBefore: 7
+medications: {
+
+    iron: {
+        enabled: true,
+        stopDaysBefore: 7,
+        instruction: "Stop taking oral iron."
     },
+
+    mounjaro: {
+        enabled: true,
+        stopDaysBefore: 7,
+        instruction: "Stop taking Mounjaro."
+    }
+
+},
 
     hospitalSites: [
         "Northern General Hospital",
@@ -1099,44 +1111,50 @@ function addLowResidueDiet(profile) {
 
 
 //=============================
-// Get Iron Tasks
+// Get Medication Tasks
 //=============================
 
+function getMedicationTasks(day) {
 
-function getIronTasks(day) {
+    const medicationTasks = [];
 
-    const iron =
-    ironSelect.checked;
+    const medications =
+        activeProfile.medications;
 
- if (!iron) {
-    return [];
-}
-
-    if (
-        !activeProfile.iron ||
-        !activeProfile.iron.stopDaysBefore
-    ) {
+    if (!medications) {
         return [];
     }
 
-    const stopDaysBefore =
-        activeProfile.iron.stopDaysBefore;
+    for (const medicationName in medications) {
 
-    if (day === -stopDaysBefore) {
+        const medication =
+            medications[medicationName];
 
-        return [
-            {
+        const checkbox =
+            document.getElementById(medicationName + "Select");
+
+        if (!checkbox || !checkbox.checked) {
+            continue;
+        }
+
+        if (!medication.enabled) {
+            continue;
+        }
+
+        if (day === -medication.stopDaysBefore) {
+
+            medicationTasks.push({
                 type: "medication",
-                text: "Stop taking oral iron."
-            }
-        ];
+                text: medication.instruction
+            });
+
+        }
 
     }
 
-    return [];
+    return medicationTasks;
 
 }
-
 
 //==========================
 // Medication Tasks - V3 placeholder
