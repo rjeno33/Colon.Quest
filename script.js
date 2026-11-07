@@ -341,10 +341,17 @@ medications: {
         enabled: true,
         stopDaysBefore: 2,
         instruction: "Stop taking loperamide."
+    },
+
+    ramipril: {
+        enabled:true,
+        stopDaysBefore:0,
+        instruction: "Do not take Ramipril today and for 2 days after your procedure."
     }
 
 },
 
+    
     hospitalSites: [
         "Northern General Hospital",
         "Royal Hallamshire Hospital"
