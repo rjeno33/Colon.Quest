@@ -894,6 +894,37 @@ const anticoagulationSelect =
 const medicationPathway =
     document.getElementById("medicationPathway");
 
+// =========================
+// Steroid selection
+// =========================
+
+const steroidSelect =
+    document.getElementById("steroidSelect");
+
+const steroidDoseBox =
+    document.getElementById("steroidDoseBox");
+
+const steroidDose =
+    document.getElementById("steroidDose");
+
+
+// Show or hide steroid dose input
+
+steroidSelect.addEventListener("change", function() {
+
+    if (steroidSelect.checked) {
+
+        steroidDoseBox.style.display = "block";
+
+    } else {
+
+        steroidDoseBox.style.display = "none";
+        steroidDose.value = "";
+
+    }
+
+});
+
 //=============================
 // Anticoagulation Protocols
 //=============================
