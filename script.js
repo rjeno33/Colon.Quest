@@ -1835,6 +1835,59 @@ function getPrepTasks(
             type: "prep"
         });
 
+        // =========================
+// Steroid instruction
+// =========================
+
+if (
+    steroidSelect.checked &&
+    steroidDose.value.trim() !== ""
+) {
+
+    const steroidDate = new Date(appointmentDate);
+
+    // Set the date to the day of this preparation dose
+    if (dayBefore === 1) {
+        steroidDate.setDate(
+            steroidDate.getDate() - 1
+        );
+    }
+
+    // Calculate two hours after preparation
+    const prepParts = prepTime.split(":");
+
+    steroidDate.setHours(
+        Number(prepParts[0]),
+        Number(prepParts[1]),
+        0,
+        0
+    );
+
+    steroidDate.setTime(
+        steroidDate.getTime() + 2 * 60 * 60 * 1000
+    );
+
+    const steroidTime =
+        steroidDate.toLocaleTimeString(
+            [],
+            {
+                hour: "2-digit",
+                minute: "2-digit",
+                hour12: false
+            }
+        );
+
+    tasks.push({
+        id: dayId + "-steroid" + index,
+        text: steroidTime +
+              " Take " +
+              steroidDose.value.trim() +
+              " as prescribed by your clinical team",
+        type: "medication"
+    });
+
+}
+
         // Add an additional water task, if configured
         if (prep.additionalWater) {
 
