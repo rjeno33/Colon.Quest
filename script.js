@@ -361,12 +361,9 @@ diabetes: {
 
     type1: {
 
-        mixedInsulin: {
-
-    dayBefore: "Reduce your evening dose of mixed insulin by 50%.",
-
-    dayOfTest: "Reduce your morning dose of mixed insulin by 50%."
-
+                 mixedInsulin: {
+                      dayBefore: "Reduce your evening dose of {medication} by 50%.",
+                      dayOfTest: "Reduce your morning dose of {medication} by 50%."
 },
 
 backgroundInsulin: {
@@ -405,12 +402,12 @@ backgroundInsulin: {
 
     type2: {
 
-        sglt2: {
-
-            dayBefore: "Do not take your sglt2 medication today",
-
-            dayOfTest: "Do not take your sglt2 medication until after your test",
-        },
+           sglt2: {
+               
+                  dayBefore: "Do not take your {medication} today.",
+               
+                  dayOfTest: "Do not take your {medication} until after your test."
+},
 
         otherTablets: {
 
@@ -420,12 +417,11 @@ backgroundInsulin: {
         },
 
 
-        mixedInsulin: {
-
-    dayBefore: "Reduce your evening dose of mixed insulin by 50%.",
-
-    dayOfTest: "Do not take your morning mixed insulin."
-
+           mixedInsulin: {
+               
+                    dayBefore: "Reduce your evening dose of {medication} by 50%.",
+               
+                    dayOfTest: "Do not take your morning dose of {medication}."
 },
 
          backgroundInsulin: {
@@ -1913,9 +1909,11 @@ if (day === -1 && medication.dayBefore) {
 
 // Insert the selected insulin name
 if (
-medicationName === "backgroundInsulin" ||
-medicationName === "veryLongInsulin" ||
-medicationName === "quickInsulin"
+    medicationName === "backgroundInsulin" ||
+    medicationName === "veryLongInsulin" ||
+    medicationName === "quickInsulin" ||
+    medicationName === "mixedInsulin" ||
+    medicationName === "sglt2"
 ) {
 
 let insulinNameType;
@@ -1928,6 +1926,12 @@ else if (medicationName === "veryLongInsulin") {
 }
 else if (medicationName === "quickInsulin") {
     insulinNameType = "QuickInsulin";
+}
+    else if (medicationName === "mixedInsulin") {
+    insulinNameType = "MixedInsulin";
+}
+else if (medicationName === "sglt2") {
+    insulinNameType = "Sglt2";
 }
 
     const insulinName =
@@ -1955,9 +1959,11 @@ if (day === 0 && medication.dayOfTest) {
 
 // Insert the selected insulin name
 if (
-medicationName === "backgroundInsulin" ||
-medicationName === "veryLongInsulin" ||
-medicationName === "quickInsulin"
+    medicationName === "backgroundInsulin" ||
+    medicationName === "veryLongInsulin" ||
+    medicationName === "quickInsulin" ||
+    medicationName === "mixedInsulin" ||
+    medicationName === "sglt2"
 ) {
 
 let insulinNameType;
@@ -1970,6 +1976,12 @@ else if (medicationName === "veryLongInsulin") {
 }
 else if (medicationName === "quickInsulin") {
     insulinNameType = "QuickInsulin";
+}
+    else if (medicationName === "mixedInsulin") {
+    insulinNameType = "MixedInsulin";
+}
+else if (medicationName === "sglt2") {
+    insulinNameType = "Sglt2";
 }
 
     const insulinName =
