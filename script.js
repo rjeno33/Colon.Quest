@@ -1182,6 +1182,50 @@ type2QuickInsulin.addEventListener("change", function() {
         type2QuickInsulin.checked ? "block" : "none";
 });
 
+// =========================
+// Mixed insulin selection
+// =========================
+
+const type1MixedInsulin =
+    document.getElementById("type1MixedInsulin");
+
+const type1MixedInsulinNameBox =
+    document.getElementById("type1MixedInsulinNameBox");
+
+const type2MixedInsulin =
+    document.getElementById("type2MixedInsulin");
+
+const type2MixedInsulinNameBox =
+    document.getElementById("type2MixedInsulinNameBox");
+
+// Type 1
+type1MixedInsulin.addEventListener("change", function() {
+    type1MixedInsulinNameBox.style.display =
+        type1MixedInsulin.checked ? "block" : "none";
+});
+
+// Type 2
+type2MixedInsulin.addEventListener("change", function() {
+    type2MixedInsulinNameBox.style.display =
+        type2MixedInsulin.checked ? "block" : "none";
+});
+
+
+// =========================
+// SGLT2 selection
+// =========================
+
+const type2Sglt2 =
+    document.getElementById("type2Sglt2");
+
+const type2Sglt2NameBox =
+    document.getElementById("type2Sglt2NameBox");
+
+type2Sglt2.addEventListener("change", function() {
+    type2Sglt2NameBox.style.display =
+        type2Sglt2.checked ? "block" : "none";
+});
+
 //=============================
 // Anticoagulation Protocols
 //=============================
