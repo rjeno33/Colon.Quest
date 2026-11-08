@@ -369,11 +369,11 @@ diabetes: {
 
 },
 
-        backgroundInsulin: {
+backgroundInsulin: {
 
-    dayBefore: "Reduce your evening dose of background insulin by 25%.",
+    dayBefore: "Reduce your evening dose of {medication} by 25%.",
 
-    dayOfTest: "Reduce your morning dose of background insulin by 25%."
+    dayOfTest: "Reduce your morning dose of {medication} by 25%."
 
 },
 
@@ -427,11 +427,11 @@ diabetes: {
 
 },
 
-        backgroundInsulin: {
+         backgroundInsulin: {
 
-    dayBefore: "Reduce your evening dose of background insulin by 25%.",
+    dayBefore: "Reduce your evening dose of {medication} by 25%.",
 
-    dayOfTest: "Reduce your morning dose of background insulin by 25%."
+    dayOfTest: "Reduce your morning dose of {medication} by 25%."
 
 },
 
@@ -1797,21 +1797,57 @@ function getDiabetesTasks(day) {
             continue;
         }
 
-        // Day before procedure
-        if (day === -1 && medication.dayBefore) {
-            tasks.push({
-                type: "medication",
-                text: medication.dayBefore
-            });
-        }
+// Day before procedure
+if (day === -1 && medication.dayBefore) {
 
-        // Day of procedure
-        if (day === 0 && medication.dayOfTest) {
-            tasks.push({
-                type: "medication",
-                text: medication.dayOfTest
-            });
-        }
+    let instruction = medication.dayBefore;
+
+    // Insert the selected insulin name
+    if (medicationName === "backgroundInsulin") {
+
+        const insulinName =
+            document.getElementById(
+                type + "BackgroundInsulinName"
+            ).value;
+
+        instruction = instruction.replace(
+            "{medication}",
+            insulinName
+        );
+
+    }
+
+    tasks.push({
+        type: "medication",
+        text: instruction
+    });
+}
+
+// Day of procedure
+if (day === 0 && medication.dayOfTest) {
+
+    let instruction = medication.dayOfTest;
+
+    // Insert the selected insulin name
+    if (medicationName === "backgroundInsulin") {
+
+        const insulinName =
+            document.getElementById(
+                type + "BackgroundInsulinName"
+            ).value;
+
+        instruction = instruction.replace(
+            "{medication}",
+            insulinName
+        );
+
+    }
+
+    tasks.push({
+        type: "medication",
+        text: instruction
+    });
+}
     }
 
     return tasks;
