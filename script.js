@@ -377,12 +377,13 @@ backgroundInsulin: {
 
 },
 
-        veryLongInsulin: {
+       veryLongInsulin: {
 
-            dayBefore: "Take your very long acting insulin as usual",
+           dayBefore: "Take your {medication} as usual.",
 
-            dayOfTest: "Take your very long acting insulin as usual"
-        },
+            dayOfTest: "Take your {medication} as usual."
+
+},
 
         quickInsulin: {
 
@@ -435,12 +436,13 @@ backgroundInsulin: {
 
 },
 
-             veryLongInsulin: {
+               veryLongInsulin: {
 
-            dayBefore: "Take your very long acting insulin as usual",
+                    dayBefore: "Take your {medication} as usual.",
 
-            dayOfTest: "Take your very long acting insulin as usual"
-        },
+                    dayOfTest: "Take your {medication} as usual."
+
+},
 
                 quickInsulin: {
 
