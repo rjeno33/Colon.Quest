@@ -356,7 +356,7 @@ medications: {
 // =========================
 
 diabetes: {
-
+ 
     enabled: true,
 
     type1: {
@@ -369,13 +369,34 @@ diabetes: {
 
 },
 
-        backgroundInsulin: {},
+        backgroundInsulin: {
 
-        veryLongInsulin: {},
+    dayBefore: "Reduce your evening dose of background insulin by 25%.",
 
-        quickInsulin: {},
+    dayOfTest: "Reduce your morning dose of background insulin by 25%."
 
-        otherTablets: {},
+},
+
+        veryLongInsulin: {
+
+            dayBefore: "Take your very long acting insulin as usual",
+
+            dayOfTest: "Take your very long acting insulin as usual"
+        },
+
+        quickInsulin: {
+
+            dayBefore: "If you are not eating, do not take your quick acting insulin",
+
+            dayOfTest: "If you are not eating, do not take your quick acting insulin"
+        },
+
+        otherTablets: {
+
+            dayBefore: "Take non sglt2 diabetes tablets as usual whilst eating, once on fluids only stop taking these medications",
+
+            dayOfTest: "Do not take non sglt2 diabetes tablets until after your test"
+        },
 
         glp1: {}
 
@@ -383,9 +404,20 @@ diabetes: {
 
     type2: {
 
-        sglt2: {},
+        sglt2: {
 
-        otherTablets: {},
+            dayBefore: "Do not take your sglt2 medication today",
+
+            dayOfTest: "Do not take your sglt2 medication until after your test",
+        },
+
+        otherTablets: {
+
+            dayBefore: "Take non sglt2 diabetes tablets as usual whilst eating, once on fluids only stop taking these medications",
+
+            dayOfTest: "Do not take non sglt2 diabetes tablets until after your test"
+        },
+
 
         mixedInsulin: {
 
@@ -395,11 +427,27 @@ diabetes: {
 
 },
 
-        backgroundInsulin: {},
+        backgroundInsulin: {
 
-        veryLongInsulin: {},
+    dayBefore: "Reduce your evening dose of background insulin by 25%.",
 
-        quickInsulin: {},
+    dayOfTest: "Reduce your morning dose of background insulin by 25%."
+
+},
+
+             veryLongInsulin: {
+
+            dayBefore: "Take your very long acting insulin as usual",
+
+            dayOfTest: "Take your very long acting insulin as usual"
+        },
+
+                quickInsulin: {
+
+            dayBefore: "If you are not eating, do not take your quick acting insulin",
+
+            dayOfTest: "If you are not eating, do not take your quick acting insulin"
+        },
 
         glp1: {}
 
