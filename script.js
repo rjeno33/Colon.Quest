@@ -1116,6 +1116,41 @@ type2BackgroundInsulin.addEventListener("change", function() {
 
 });
 
+// =========================
+// Very long-acting insulin selection
+// =========================
+
+const type1VeryLongInsulin =
+    document.getElementById("type1VeryLongInsulin");
+
+const type1VeryLongInsulinNameBox =
+    document.getElementById("type1VeryLongInsulinNameBox");
+
+const type2VeryLongInsulin =
+    document.getElementById("type2VeryLongInsulin");
+
+const type2VeryLongInsulinNameBox =
+    document.getElementById("type2VeryLongInsulinNameBox");
+
+
+// Type 1
+
+type1VeryLongInsulin.addEventListener("change", function() {
+
+    type1VeryLongInsulinNameBox.style.display =
+        type1VeryLongInsulin.checked ? "block" : "none";
+
+});
+
+
+// Type 2
+
+type2VeryLongInsulin.addEventListener("change", function() {
+
+    type2VeryLongInsulinNameBox.style.display =
+        type2VeryLongInsulin.checked ? "block" : "none";
+
+});
 
 //=============================
 // Anticoagulation Protocols
