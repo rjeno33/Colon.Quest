@@ -1839,20 +1839,28 @@ if (day === -1 && medication.dayBefore) {
 
     let instruction = medication.dayBefore;
 
-    // Insert the selected insulin name
-    if (medicationName === "backgroundInsulin") {
+// Insert the selected insulin name
+if (
+    medicationName === "backgroundInsulin" ||
+    medicationName === "veryLongInsulin"
+) {
 
-        const insulinName =
-            document.getElementById(
-                type + "BackgroundInsulinName"
-            ).value;
+    const insulinNameType =
+        medicationName === "backgroundInsulin"
+            ? "BackgroundInsulin"
+            : "VeryLongInsulin";
 
-        instruction = instruction.replace(
-            "{medication}",
-            insulinName
-        );
+    const insulinName =
+        document.getElementById(
+            type + insulinNameType + "Name"
+        ).value;
 
-    }
+    instruction = instruction.replace(
+        "{medication}",
+        insulinName
+    );
+
+}
 
     tasks.push({
         type: "medication",
