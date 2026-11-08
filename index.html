@@ -99,6 +99,114 @@
 
     </div>
 
+        
+<!-- =========================
+     Diabetes selection
+========================= -->
+
+<div class="diabetesSelection">
+
+    <h3>Diabetes Management</h3>
+
+    <label for="diabetesType">
+        Does the patient have diabetes?
+    </label>
+
+    <select id="diabetesType">
+
+        <option value="">-- Select diabetes status --</option>
+        <option value="none">No</option>
+        <option value="type1">Type 1 diabetes</option>
+        <option value="type2">Type 2 diabetes</option>
+
+    </select>
+
+
+    <!-- Type 1 diabetes medications -->
+
+    <div id="type1DiabetesBox" style="display: none;">
+
+        <h4>Type 1 Diabetes Medications</h4>
+
+        <label>
+            <input type="checkbox" id="type1MixedInsulin">
+            Twice-daily mixed insulin
+        </label>
+
+        <label>
+            <input type="checkbox" id="type1BackgroundInsulin">
+            Background insulin (e.g. Levemir, Lantus, Humulin I)
+        </label>
+
+        <label>
+            <input type="checkbox" id="type1VeryLongInsulin">
+            Very long-acting background insulin (e.g. Tresiba, Toujeo)
+        </label>
+
+        <label>
+            <input type="checkbox" id="type1QuickInsulin">
+            Quick-acting insulin (e.g. Humalog, Novorapid)
+        </label>
+
+        <label>
+            <input type="checkbox" id="type1OtherTablets">
+            Other diabetes tablets
+        </label>
+
+        <label>
+            <input type="checkbox" id="type1GLP1">
+            GLP-1 medication
+        </label>
+
+    </div>
+
+
+    <!-- Type 2 diabetes medications -->
+
+    <div id="type2DiabetesBox" style="display: none;">
+
+        <h4>Type 2 Diabetes Medications</h4>
+
+        <label>
+            <input type="checkbox" id="type2SGLT2">
+            SGLT2 medication (e.g. empagliflozin, dapagliflozin)
+        </label>
+
+        <label>
+            <input type="checkbox" id="type2OtherTablets">
+            Other diabetes tablets
+        </label>
+
+        <label>
+            <input type="checkbox" id="type2MixedInsulin">
+            Twice-daily mixed insulin
+        </label>
+
+        <label>
+            <input type="checkbox" id="type2BackgroundInsulin">
+            Background insulin (e.g. Levemir, Lantus, Humulin I)
+        </label>
+
+        <label>
+            <input type="checkbox" id="type2VeryLongInsulin">
+            Very long-acting background insulin (e.g. Tresiba, Toujeo)
+        </label>
+
+        <label>
+            <input type="checkbox" id="type2QuickInsulin">
+            Quick-acting insulin (e.g. Humalog, Novorapid)
+        </label>
+
+        <label>
+            <input type="checkbox" id="type2GLP1">
+            GLP-1 medication
+        </label>
+
+    </div>
+
+</div>
+
+
 </div>
 
     <div class="anticoagulationSelection">
