@@ -932,6 +932,51 @@ steroidSelect.addEventListener("change", function() {
 
 });
 
+
+// =========================
+// Diabetes selection
+// =========================
+
+const diabetesType =
+    document.getElementById("diabetesType");
+
+const type1DiabetesBox =
+    document.getElementById("type1DiabetesBox");
+
+const type2DiabetesBox =
+    document.getElementById("type2DiabetesBox");
+
+
+// Show the correct diabetes medication options
+
+diabetesType.addEventListener("change", function() {
+
+    // Hide both medication sections first
+
+    type1DiabetesBox.style.display = "none";
+    type2DiabetesBox.style.display = "none";
+
+
+    // Show Type 1 options
+
+    if (diabetesType.value === "type1") {
+
+        type1DiabetesBox.style.display = "block";
+
+    }
+
+
+    // Show Type 2 options
+
+    else if (diabetesType.value === "type2") {
+
+        type2DiabetesBox.style.display = "block";
+
+    }
+
+});
+
+
 //=============================
 // Anticoagulation Protocols
 //=============================
