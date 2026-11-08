@@ -351,6 +351,62 @@ medications: {
 
 },
 
+    // =========================
+// Diabetes protocols
+// =========================
+
+diabetes: {
+
+    enabled: true,
+
+    type1: {
+
+        mixedInsulin: {
+
+    dayBefore: "Reduce your evening dose of mixed insulin by 50%.",
+
+    dayOfTest: "Reduce your morning dose of mixed insulin by 50%."
+
+},
+
+        backgroundInsulin: {},
+
+        veryLongInsulin: {},
+
+        quickInsulin: {},
+
+        otherTablets: {},
+
+        glp1: {}
+
+    },
+
+    type2: {
+
+        sglt2: {},
+
+        otherTablets: {},
+
+        mixedInsulin: {
+
+    dayBefore: "Reduce your evening dose of mixed insulin by 50%.",
+
+    dayOfTest: "Do not take your morning mixed insulin."
+
+},
+
+        backgroundInsulin: {},
+
+        veryLongInsulin: {},
+
+        quickInsulin: {},
+
+        glp1: {}
+
+    }
+
+},
+
     
     hospitalSites: [
         "Northern General Hospital",
@@ -1611,6 +1667,71 @@ function getMedicationTasks(day) {
 
 }
 
+// =========================
+// Diabetes medication tasks
+// =========================
+
+function getDiabetesTasks(day) {
+
+    const tasks = [];
+
+    // Check whether diabetes is enabled in this profile
+    if (!activeProfile.diabetes ||
+        !activeProfile.diabetes.enabled) {
+        return tasks;
+    }
+
+    // Find the selected diabetes type
+    const type = diabetesType.value;
+
+    if (!type || type === "none") {
+        return tasks;
+    }
+
+    // Get the relevant profile instructions
+    const diabetesRules =
+        activeProfile.diabetes[type];
+
+    if (!diabetesRules) {
+        return tasks;
+    }
+
+    // Check the selected medications
+    for (const medicationName in diabetesRules) {
+
+        const medication =
+            diabetesRules[medicationName];
+
+        const checkboxId =
+            type + medicationName.charAt(0).toUpperCase()
+            + medicationName.slice(1);
+
+        const checkbox =
+            document.getElementById(checkboxId);
+
+        if (!checkbox || !checkbox.checked) {
+            continue;
+        }
+
+        // Day before procedure
+        if (day === -1 && medication.dayBefore) {
+            tasks.push({
+                type: "medication",
+                text: medication.dayBefore
+            });
+        }
+
+        // Day of procedure
+        if (day === 0 && medication.dayOfTest) {
+            tasks.push({
+                type: "medication",
+                text: medication.dayOfTest
+            });
+        }
+    }
+
+    return tasks;
+}
 
 //============================
 // Preparation instructions
@@ -2169,10 +2290,16 @@ const medicationTasks =
 
 tasks.push(...medicationTasks);
 
+    const diabetesTasks =
+    getDiabetesTasks(-1);
+
+tasks.push(...diabetesTasks);
+
     const anticoagulationTasks =
     getAnticoagulationTasks(-1);
 
 tasks.push(...anticoagulationTasks);
+
 
 
     // =========================
@@ -2432,6 +2559,11 @@ tasks.push(
     ...getMedicationTasks(0)
 );
 
+    const diabetesTasks =
+    getDiabetesTasks(0);
+
+tasks.push(...diabetesTasks);
+    
 tasks.push(
     ...getAnticoagulationTasks(0)
 );
