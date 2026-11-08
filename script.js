@@ -385,12 +385,12 @@ backgroundInsulin: {
 
 },
 
-        quickInsulin: {
-
-            dayBefore: "If you are not eating, do not take your quick acting insulin",
-
-            dayOfTest: "If you are not eating, do not take your quick acting insulin"
-        },
+         quickInsulin: {
+    
+                   dayBefore: "If you are not eating, do not take your {medication}.",
+    
+                    dayOfTest: "If you are not eating, do not take your {medication}."
+},
 
         otherTablets: {
 
@@ -444,12 +444,12 @@ backgroundInsulin: {
 
 },
 
-                quickInsulin: {
-
-            dayBefore: "If you are not eating, do not take your quick acting insulin",
-
-            dayOfTest: "If you are not eating, do not take your quick acting insulin"
-        },
+                 quickInsulin: {
+                               
+                         dayBefore: "If you are not eating, do not take your {medication}.",
+                        
+                         dayOfTest: "If you are not eating, do not take your {medication}."
+},
 
         glp1: {}
 
@@ -1154,6 +1154,34 @@ type2VeryLongInsulin.addEventListener("change", function() {
 
 });
 
+// =========================
+// Quick-acting insulin selection
+// =========================
+
+const type1QuickInsulin =
+    document.getElementById("type1QuickInsulin");
+
+const type1QuickInsulinNameBox =
+    document.getElementById("type1QuickInsulinNameBox");
+
+const type2QuickInsulin =
+    document.getElementById("type2QuickInsulin");
+
+const type2QuickInsulinNameBox =
+    document.getElementById("type2QuickInsulinNameBox");
+
+// Type 1
+type1QuickInsulin.addEventListener("change", function() {
+    type1QuickInsulinNameBox.style.display =
+        type1QuickInsulin.checked ? "block" : "none";
+});
+
+// Type 2
+type2QuickInsulin.addEventListener("change", function() {
+    type2QuickInsulinNameBox.style.display =
+        type2QuickInsulin.checked ? "block" : "none";
+});
+
 //=============================
 // Anticoagulation Protocols
 //=============================
@@ -1841,14 +1869,22 @@ if (day === -1 && medication.dayBefore) {
 
 // Insert the selected insulin name
 if (
-    medicationName === "backgroundInsulin" ||
-    medicationName === "veryLongInsulin"
+medicationName === "backgroundInsulin" ||
+medicationName === "veryLongInsulin" ||
+medicationName === "quickInsulin"
 ) {
 
-    const insulinNameType =
-        medicationName === "backgroundInsulin"
-            ? "BackgroundInsulin"
-            : "VeryLongInsulin";
+let insulinNameType;
+
+if (medicationName === "backgroundInsulin") {
+    insulinNameType = "BackgroundInsulin";
+}
+else if (medicationName === "veryLongInsulin") {
+    insulinNameType = "VeryLongInsulin";
+}
+else if (medicationName === "quickInsulin") {
+    insulinNameType = "QuickInsulin";
+}
 
     const insulinName =
         document.getElementById(
@@ -1875,14 +1911,22 @@ if (day === 0 && medication.dayOfTest) {
 
 // Insert the selected insulin name
 if (
-    medicationName === "backgroundInsulin" ||
-    medicationName === "veryLongInsulin"
+medicationName === "backgroundInsulin" ||
+medicationName === "veryLongInsulin" ||
+medicationName === "quickInsulin"
 ) {
 
-    const insulinNameType =
-        medicationName === "backgroundInsulin"
-            ? "BackgroundInsulin"
-            : "VeryLongInsulin";
+let insulinNameType;
+
+if (medicationName === "backgroundInsulin") {
+    insulinNameType = "BackgroundInsulin";
+}
+else if (medicationName === "veryLongInsulin") {
+    insulinNameType = "VeryLongInsulin";
+}
+else if (medicationName === "quickInsulin") {
+    insulinNameType = "QuickInsulin";
+}
 
     const insulinName =
         document.getElementById(
