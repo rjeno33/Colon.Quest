@@ -1080,6 +1080,42 @@ diabetesType.addEventListener("change", function() {
 
 });
 
+// =========================
+// Background insulin selection
+// =========================
+
+const type1BackgroundInsulin =
+    document.getElementById("type1BackgroundInsulin");
+
+const type1BackgroundInsulinNameBox =
+    document.getElementById("type1BackgroundInsulinNameBox");
+
+const type2BackgroundInsulin =
+    document.getElementById("type2BackgroundInsulin");
+
+const type2BackgroundInsulinNameBox =
+    document.getElementById("type2BackgroundInsulinNameBox");
+
+
+// Type 1
+
+type1BackgroundInsulin.addEventListener("change", function() {
+
+    type1BackgroundInsulinNameBox.style.display =
+        type1BackgroundInsulin.checked ? "block" : "none";
+
+});
+
+
+// Type 2
+
+type2BackgroundInsulin.addEventListener("change", function() {
+
+    type2BackgroundInsulinNameBox.style.display =
+        type2BackgroundInsulin.checked ? "block" : "none";
+
+});
+
 
 //=============================
 // Anticoagulation Protocols
