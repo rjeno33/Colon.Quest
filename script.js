@@ -416,6 +416,42 @@ backgroundInsulin: {
             dayOfTest: "Do not take non sglt2 diabetes tablets until after your test"
         },
 
+       tablets: {
+    metformin: {
+        dayBefore: "Take your {medication} as usual while eating. Once on fluids only, stop taking it.",
+        dayOfTest: "Do not take your {medication}."
+    },
+
+    yaltorminSR: {
+        dayBefore: "Take your {medication} as usual while eating. Once on fluids only, stop taking it.",
+        dayOfTest: "Do not take your {medication}."
+    },
+
+    gliclazide: {
+        dayBefore: "Take your {medication} as usual while eating. Once on fluids only, stop taking it.",
+        dayOfTest: "Do not take your {medication}."
+    },
+
+    sitagliptin: {
+        dayBefore: "Take your {medication} as usual while eating. Once on fluids only, stop taking it.",
+        dayOfTest: "Do not take your {medication}."
+    },
+
+    linagliptin: {
+        dayBefore: "Take your {medication} as usual while eating. Once on fluids only, stop taking it.",
+        dayOfTest: "Do not take your {medication}."
+    },
+
+    pioglitazone: {
+        dayBefore: "Take your {medication} as usual while eating. Once on fluids only, stop taking it.",
+        dayOfTest: "Do not take your {medication}."
+    },
+
+    otherTablet: {
+        dayBefore: "Take your {medication} as usual while eating. Once on fluids only, stop taking it.",
+        dayOfTest: "Do not take your {medication}."
+    }
+},
 
            mixedInsulin: {
                
@@ -1902,9 +1938,17 @@ function getDiabetesTasks(day) {
         return tasks;
     }
 
-    // Check the selected medications
-    for (const medicationName in diabetesRules) {
+    // Get individual tablet rules
+const tabletRules =
+    diabetesRules.tablets || {};
 
+    // Check the selected medications
+for (const medicationName in diabetesRules) {
+
+    // Skip the individual tablet collection
+    if (medicationName === "tablets") {
+        continue;
+    }
         const medication =
             diabetesRules[medicationName];
 
