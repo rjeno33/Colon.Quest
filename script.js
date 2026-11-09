@@ -1120,27 +1120,48 @@ const type2DiabetesBox =
 
 diabetesType.addEventListener("change", function() {
 
-    // Hide both medication sections first
+    // Clear all previous Type 1 selections
+    type1DiabetesBox
+        .querySelectorAll('input[type="checkbox"], select')
+        .forEach(function(element) {
 
+            if (element.type === "checkbox") {
+                element.checked = false;
+            } else {
+                element.value = "";
+            }
+
+        });
+
+
+    // Clear all previous Type 2 selections
+    type2DiabetesBox
+        .querySelectorAll('input[type="checkbox"], select')
+        .forEach(function(element) {
+
+            if (element.type === "checkbox") {
+                element.checked = false;
+            } else {
+                element.value = "";
+            }
+
+        });
+
+
+    // Hide both medication sections
     type1DiabetesBox.style.display = "none";
     type2DiabetesBox.style.display = "none";
 
 
     // Show Type 1 options
-
     if (diabetesType.value === "type1") {
-
         type1DiabetesBox.style.display = "block";
-
     }
 
 
     // Show Type 2 options
-
     else if (diabetesType.value === "type2") {
-
         type2DiabetesBox.style.display = "block";
-
     }
 
 });
