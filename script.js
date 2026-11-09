@@ -396,6 +396,37 @@ backgroundInsulin: {
             dayOfTest: "Do not take non sglt2 diabetes tablets until after your test"
         },
 
+        tablets: {
+    metformin: {
+        dayBefore: "Take your {medication} as usual while eating. Once on fluids only, stop taking it.",
+        dayOfTest: "Do not take your {medication}."
+    },
+    yaltorminSR: {
+        dayBefore: "Take your {medication} as usual while eating. Once on fluids only, stop taking it.",
+        dayOfTest: "Do not take your {medication}."
+    },
+    gliclazide: {
+        dayBefore: "Take your {medication} as usual while eating. Once on fluids only, stop taking it.",
+        dayOfTest: "Do not take your {medication}."
+    },
+    sitagliptin: {
+        dayBefore: "Take your {medication} as usual while eating. Once on fluids only, stop taking it.",
+        dayOfTest: "Do not take your {medication}."
+    },
+    linagliptin: {
+        dayBefore: "Take your {medication} as usual while eating. Once on fluids only, stop taking it.",
+        dayOfTest: "Do not take your {medication}."
+    },
+    pioglitazone: {
+        dayBefore: "Take your {medication} as usual while eating. Once on fluids only, stop taking it.",
+        dayOfTest: "Do not take your {medication}."
+    },
+    otherTablet: {
+        dayBefore: "Take your {medication} as usual while eating. Once on fluids only, stop taking it.",
+        dayOfTest: "Do not take your {medication}."
+    }
+},
+
         glp1: {}
 
     },
