@@ -1222,6 +1222,23 @@ type2Sglt2.addEventListener("change", function() {
         type2Sglt2.checked ? "block" : "none";
 });
 
+// =========================
+// Other diabetes tablets selection
+// =========================
+
+const type2OtherTablets =
+    document.getElementById("type2OtherTablets");
+
+const type2TabletsBox =
+    document.getElementById("type2TabletsBox");
+
+type2OtherTablets.addEventListener("change", function() {
+
+    type2TabletsBox.style.display =
+        type2OtherTablets.checked ? "block" : "none";
+
+});
+
 //=============================
 // Anticoagulation Protocols
 //=============================
