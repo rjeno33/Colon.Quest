@@ -1946,9 +1946,12 @@ const tabletRules =
 for (const medicationName in diabetesRules) {
 
     // Skip the individual tablet collection
-    if (medicationName === "tablets") {
-        continue;
-    }
+if (
+    medicationName === "tablets" ||
+    medicationName === "otherTablets"
+) {
+    continue;
+}
         const medication =
             diabetesRules[medicationName];
 
@@ -2064,6 +2067,65 @@ else if (medicationName === "sglt2") {
 }
     }
 
+    // =========================
+// Individual diabetes tablets
+// =========================
+
+const tabletNames = {
+    metformin: "Metformin",
+    yaltorminSR: "Yaltormin SR",
+    gliclazide: "Gliclazide",
+    sitagliptin: "Sitagliptin",
+    linagliptin: "Linagliptin",
+    pioglitazone: "Pioglitazone",
+    otherTablet: "Other diabetes medication"
+};
+
+// Check whether the tablet section is enabled
+const tabletSelection =
+    document.getElementById(type + "OtherTablets");
+
+if (tabletSelection && tabletSelection.checked) {
+
+    for (const tabletName in tabletRules) {
+
+        const checkboxId =
+            type + tabletName.charAt(0).toUpperCase()
+            + tabletName.slice(1);
+
+        const checkbox =
+            document.getElementById(checkboxId);
+
+        if (!checkbox || !checkbox.checked) {
+            continue;
+        }
+
+        const tablet = tabletRules[tabletName];
+
+        let instruction;
+
+        if (day === -1 && tablet.dayBefore) {
+            instruction = tablet.dayBefore;
+        }
+        else if (day === 0 && tablet.dayOfTest) {
+            instruction = tablet.dayOfTest;
+        }
+        else {
+            continue;
+        }
+
+        instruction = instruction.replace(
+            "{medication}",
+            tabletNames[tabletName]
+        );
+
+        tasks.push({
+            type: "medication",
+            text: instruction
+        });
+    }
+}
+    
     return tasks;
 }
 
