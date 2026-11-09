@@ -1306,6 +1306,17 @@ type2OtherTablets.addEventListener("change", function() {
 
 });
 
+const type1OtherTablets =
+    document.getElementById("type1OtherTablets");
+
+const type1TabletsBox =
+    document.getElementById("type1TabletsBox");
+
+type1OtherTablets.addEventListener("change", function() {
+    type1TabletsBox.style.display =
+        type1OtherTablets.checked ? "block" : "none";
+});
+
 //=============================
 // Anticoagulation Protocols
 //=============================
