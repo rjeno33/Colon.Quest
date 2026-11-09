@@ -1304,6 +1304,17 @@ type2OtherTablets.addEventListener("change", function() {
     type2TabletsBox.style.display =
         type2OtherTablets.checked ? "block" : "none";
 
+    // Clear individual selections when parent is unticked
+    if (!type2OtherTablets.checked) {
+
+        type2TabletsBox
+            .querySelectorAll('input[type="checkbox"]')
+            .forEach(function(checkbox) {
+                checkbox.checked = false;
+            });
+
+    }
+
 });
 
 const type1OtherTablets =
@@ -1313,8 +1324,21 @@ const type1TabletsBox =
     document.getElementById("type1TabletsBox");
 
 type1OtherTablets.addEventListener("change", function() {
+
     type1TabletsBox.style.display =
         type1OtherTablets.checked ? "block" : "none";
+
+    // Clear individual selections when parent is unticked
+    if (!type1OtherTablets.checked) {
+
+        type1TabletsBox
+            .querySelectorAll('input[type="checkbox"]')
+            .forEach(function(checkbox) {
+                checkbox.checked = false;
+            });
+
+    }
+
 });
 
 //=============================
