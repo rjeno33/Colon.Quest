@@ -563,3 +563,50 @@ select:focus {
 .task span {
     flex: 1;
 }
+
+/* ================================
+   Diabetes medication category list
+================================ */
+
+#type1DiabetesBox > label,
+#type2DiabetesBox > label {
+
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    padding: 12px;
+
+    margin: 8px 0 4px;
+
+    background: #f7f7f7;
+
+    border: 1px solid #e2e2e2;
+
+    border-radius: 8px;
+
+    cursor: pointer;
+
+}
+
+
+/* Keep checkboxes neatly aligned */
+
+#type1DiabetesBox > label input,
+#type2DiabetesBox > label input {
+
+    margin: 0;
+    flex-shrink: 0;
+
+}
+
+
+/* Indent insulin selection dropdowns */
+
+#type1DiabetesBox > div[id$="NameBox"],
+#type2DiabetesBox > div[id$="NameBox"] {
+
+    margin-left: 34px;
+    margin-bottom: 12px;
+
+}
